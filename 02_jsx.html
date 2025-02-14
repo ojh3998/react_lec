@@ -15,7 +15,7 @@
 
     1. JSX는 JavaScript의 확장 문법으로 HTML의 markup 방식으로 React Element 를 생성할 수 있습니다.
     2. 코드를 읽기 쉽고, 마크업 언어와 구조가 유사하여 파악이 쉽습니다.
-    3. JSX는 공식적인 JavaScript 문법이 아니므로, Babel이라는 JavaScript Compiler가 필요합니다.
+    3. JSX는 공식적인 JavaScript 문법이 아니므로, Babel이라는 JavaScript Compiler(명령어 번역 프로그램)가 필요합니다.
     4. Babel
       1) https://babeljs.io
       2) ES6+ 코드를 이전의 웹 브라우저 환경에서 돌아갈 수 있도록 하위 버전 코드로 변경해주는 트랜스파일링 툴입니다.
@@ -45,15 +45,15 @@
 
     // JSX를 이용한 Element 생성
     const helloworld = (
+    <>
+      <React.Fragment>
+       <h1>hello world</h1>
+       <h1>nice to meet you</h1>
+      </React.Fragment>  
       <>
-       <React.Fragment>
-        <h1>hello world</h1>
-        <h1>nice to meet you</h1>
-       </React.Fragment>  
-       <>
-        <h1>hello</h1> 
-       </>
+       <h1>hello</h1> 
       </>
+    </>
     )
 
     // render
@@ -64,7 +64,8 @@
   <div id="root2"></div>
 
   <script type="text/babel">
-
+      
+   
     const radius = 3.5;
 
     const circleElement = (
