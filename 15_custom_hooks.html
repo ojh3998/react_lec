@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+
+<div id="root"></div>
+<script type="text/babel">
+  
+  // 함수로 만들어서 
+  function useInput() {
+    const { useState } = React;
+    const [ value, setValue ] = useState('');
+    const onChange = e => setValue(e.target.value);
+  
+    // 객체로 반환
+    return { value, onChange };
+
+  }
+
+  function App() {
+
+   // const { useState } = React;
+
+   /* 하나씩 저장
+   const [ email, setEmail ] = useState('');
+   const [ passwd, setPasswd ] = useState('');
+   const [ nickname, setNickname ] = useState('');
+   */
+
+   /* 객체로 저장 
+   const [ user, setUser] = useState({
+    email: '',
+    passwd: '',
+    nickname: '',
+    });
+
+    const onChangeHandler = e => {
+      setUser({
+        ...user,
+        [e.target.id]: e.target.value,
+      });
+    }
+    */
+
+    const email = useInput();
+    const passwd = useInput();
+    const nickname = useInput();
+
+
+
+    return (
+      <>
+        <div>
+          <label htmlFor="email">이메일</label>
+          <input type="text" id="email" value={email.value} onChange={email.onChange} />
+        </div>
+        <div>
+          <label htmlFor="passwd">비밀번호</label>
+          <input type="password" id="passwd" value={passwd.value} onChange={passwd.onChange}/>
+        </div>
+        <div>
+          <label htmlFor="nickname">닉네임</label>
+          <input type="text" id="nickname" {...nickname} /* Babel에서 지원하는 축약형 문법 *//>
+        </div>
+        <ul>
+          입력하는 내용이 아래에 표시 되도록 해 보세요
+          <li>이메일: {email.value}</li>
+          <li>비밀번호: {passwd.value}</li>
+          <li>닉네임: {nickname.value}</li>
+        </ul>
+        
+      </>
+
+    )
+
+  }
+
+  ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+
+</script>
+
+</body>
+</html>
